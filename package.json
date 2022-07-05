@@ -1,0 +1,24 @@
+{
+  "name": "notion-example-js",
+  "version": "1.0.0",
+  "description": "拿取 Notion 资料, 确认 Notion 的 integration 与 API key 的范例程序",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SeeDAO-OpenSource/notion-example-js.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/SeeDAO-OpenSource/notion-example-js/issues"
+  },
+  "homepage": "https://github.com/SeeDAO-OpenSource/notion-example-js#readme",
+  "dependencies": {
+    "@notionhq/client": "^1.0.4",
+    "dotenv": "^16.0.0"
+  }
+}
