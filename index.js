@@ -4,8 +4,9 @@ const { Client } = require('@notionhq/client');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 
   (async () => {
+   
 
-    const pagePropMap = {};
+    const totalPropMap = {};
     const NOTION_DB_ID =
     ['3ae1f9fd920340648c0c111ef0588c46',
     '83c2c19f501948409394817f554d1496',
@@ -19,27 +20,51 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
     'a000065a8aee4e568a2e01e8c14b5631',
     '4e72caa49d37492bbf2c4665ff4400b7'  
     ];
-   
+
+    const NOTION_DB_NAME = [
+      'DAO',
+      'Web3',
+      '公共物品',
+      'NFT',
+      'Vitalik 专栏',
+      'Water & Music',
+      '货币战争',
+      'GameFi & 元宇宙',
+      '风潮加密艺术',
+      '中译英专栏',
+      '活动文件'
+    ]
+    
+    console.log("---子区状态统计---")
+
     for(pos=0;pos< NOTION_DB_ID.length;pos++){
       const pageDataQuery = await notion.databases.query({
         database_id: NOTION_DB_ID[pos],
       });
       const pageData = pageDataQuery.results;
-  
-     
+      
+      const pagePropMap = {};
+
      for(i=0;i<pageData.length;i++){
       const pageProp = pageData[i].properties['状态'].select;
       const selectProperty = pageProp != null? pageProp.name : 'null';
       if(selectProperty != 'null'){
         if(pagePropMap[selectProperty] != undefined){
           pagePropMap[selectProperty]++;
+          totalPropMap[selectProperty]++;
         }else{
           pagePropMap[selectProperty] = 1;
+          totalPropMap[selectProperty] = 1;
         }
       }
      }
-    }
+     console.log('\n'+NOTION_DB_NAME[pos]);
      console.log(pagePropMap);
+     
+    }
+
+     console.log("\n---翻译库状态统计---")
+     console.log(totalPropMap);
     
 
   })();
